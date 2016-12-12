@@ -1,0 +1,86 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Samples</h1>
+
+<h2>Import Samples</h2>
+<%= form_tag import_samples_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
+<p>
+  Download:
+  <%= link_to "sample", samples_path(format: "csv") %>
+</p>
+
+<table>
+    <tr>
+      <th>id</th>
+      <th>row</th>
+      <th>Sample_ID</th>
+      <th>Sample_Type</th>
+      <th>Matrix</th>
+      <th>Value</th>
+      <th>Units</th>
+      <th>Test_Method</th>
+      <th>Test_Manufacturer</th>
+      <th>Lab_Location</th>
+      <th>Collection_Type</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Volume</th>
+      <th>collection_date</th>
+      <th>Test_Date</th>
+      <th>Frozen_Date</th>
+      <th>Box</th>
+      <th>Aliquots</th>
+      <th>created_at</th>
+    </tr>
+
+    <% @samples.each do | sample | %>
+    <tr>
+      <td><%= sample.id %></td>
+      <td><%= sample.row %></td>
+      <td><%= sample.sample_id%></td>
+      <td><%= sample.sample_type%></td>
+      <td><%= sample.matrix%></td>
+      <td><%= sample.value%></td>
+      <td><%= sample.units%></td>
+      <td><%= sample.test_method%></td>
+      <td><%= sample.test_manufacturer%></td>
+      <td><%= sample.lab_location%></td>
+      <td><%= sample.collection_type%></td>
+      <td><%= sample.age%></td>
+      <td><%= sample.gender%></td>
+      <td><%= sample.volume%></td>
+      <td><%= sample.collection_date%></td>
+      <td><%= sample.test_date%></td>
+      <td><%= sample.frozen_date%></td>
+      <td><%= sample.box%></td>
+      <td><%= sample.aliquots%></td>
+      <td><%= sample.created_at%></td>
+    </tr>
+    <% end %>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @samples.each do |sample| %>
+      <tr>
+        <td><%= link_to 'Show', sample %></td>
+        <td><%= link_to 'Edit', edit_sample_path(sample) %></td>
+        <td><%= link_to 'Destroy', sample, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sample', new_sample_path %>
