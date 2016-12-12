@@ -30,38 +30,6 @@ class SamplesController < ApplicationController
     render json: @sample
   end
 
-  # POST /samples
-  # POST /samples.json
-  def create
-    @sample = Sample.new(sample_params)
-
-    if @sample.save
-      render json: @sample, status: :created, location: @sample
-    else
-      render json: @sample.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /samples/1
-  # PATCH/PUT /samples/1.json
-  def update
-    @sample = Sample.find(params[:id])
-
-    if @sample.update(sample_params)
-      head :no_content
-    else
-      render json: @sample.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /samples/1
-  # DELETE /samples/1.json
-  def destroy
-    @sample.destroy
-
-    head :no_content
-  end
-
   private
 
     def set_sample
