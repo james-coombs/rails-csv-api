@@ -16,6 +16,7 @@ class SamplesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data @samples.to_csv }
+      format.json { send_data @samples.to_json }
     end
   end
 
