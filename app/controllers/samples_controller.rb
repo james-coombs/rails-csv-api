@@ -4,12 +4,6 @@ class SamplesController < ApplicationController
   require 'json'
 
   # GET /samples
-  # GET /samples.json
-  # def index
-  #   @samples = Sample.all
-  #
-  #   render json: @samples
-  # end
   def index
     @samples = Sample.all
     respond_to do |format|
@@ -19,13 +13,13 @@ class SamplesController < ApplicationController
     end
   end
 
+  # POST /samples
   def import
     Sample.import(params[:file])
     redirect_to root_url, notice: 'Samples imported.'
   end
 
   # GET /samples/1
-  # GET /samples/1.json
   def show
     render json: @sample
   end
