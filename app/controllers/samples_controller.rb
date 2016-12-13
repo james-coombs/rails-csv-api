@@ -1,6 +1,5 @@
 class SamplesController < ApplicationController
   before_action :set_sample, only: [:show, :update, :destroy]
-
   require 'csv'
   require 'json'
 
@@ -22,7 +21,7 @@ class SamplesController < ApplicationController
 
   def import
     Sample.import(params[:file])
-    redirect_to root_url, notice: "Samples imported."
+    redirect_to root_url, notice: 'Samples imported.'
   end
 
   # GET /samples/1
@@ -33,11 +32,11 @@ class SamplesController < ApplicationController
 
   private
 
-    def set_sample
-      @sample = Sample.find(params[:id])
-    end
+  def set_sample
+    @sample = Sample.find(params[:id])
+  end
 
-    def sample_params
-      params[:sample]
-    end
+  def sample_params
+    params[:sample]
+  end
 end

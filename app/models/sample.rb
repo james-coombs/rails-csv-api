@@ -31,7 +31,7 @@ class Sample < ActiveRecord::Base
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
-    Sample.create! row.to_hash
+      Sample.create! row.to_hash
     end
   end
 end
