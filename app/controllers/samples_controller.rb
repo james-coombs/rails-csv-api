@@ -4,6 +4,8 @@ class SamplesController < ApplicationController
   require 'json'
 
   # GET /samples
+  # GET /samples.csv
+  # GET /samples.json
   def index
     @samples = Sample.all
     respond_to do |format|

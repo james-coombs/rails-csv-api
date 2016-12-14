@@ -1,6 +1,5 @@
-# class Sample < ApplicationRecord
-# end
 class Sample < ActiveRecord::Base
+  # alias attributes for samples
   alias_attribute :Row, :row
   alias_attribute :'Sample ID', :sample_id
   alias_attribute :'Sample Type', :sample_type
@@ -20,8 +19,9 @@ class Sample < ActiveRecord::Base
   alias_attribute :Box, :box
   alias_attribute :Aliquots, :aliquots
 
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
+  # generate new csv file containing all Sample columns
+  def self.to_csv
+    CSV.generate do |csv|
       csv << column_names
       all.each do |sample|
         csv << sample.attributes.values_at(*column_names)
@@ -29,6 +29,7 @@ class Sample < ActiveRecord::Base
     end
   end
 
+  # import uploaded csv file, creating new rows for Sample
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       Sample.create! row.to_hash
