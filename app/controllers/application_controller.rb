@@ -9,31 +9,31 @@ class ApplicationController < ActionController::Base
   #   request.format = :json
   # end
 
-  AUTH_PROC = proc do |signed_token, _opts|
-    token = begin
-      Rails.application.message_verifier(:signed_token).verify(signed_token)
-    rescue ActiveSupport::MessageVerifier::InvalidSignature
-      false
-    end
-    User.find_by token: token
-  end
-
-  # Use Token Authentication
-  include ActionController::HttpAuthentication::Token::ControllerMethods
-  def authenticate
-    @current_user =
-      authenticate_or_request_with_http_token(&AUTH_PROC)
-  end
-
-  # call from actions to get authenticated user (or nil)
-  attr_reader :current_user
-
-  # call from unauthenticated actions that want current_user if available
-  def set_current_user
-    # for access to authenticate method
-    t = ActionController::HttpAuthentication::Token
-    @current_user = t.authenticate(self, &AUTH_PROC)
-  end
+  # AUTH_PROC = proc do |signed_token, _opts|
+  #   token = begin
+  #     Rails.application.message_verifier(:signed_token).verify(signed_token)
+  #   rescue ActiveSupport::MessageVerifier::InvalidSignature
+  #     false
+  #   end
+  #   User.find_by token: token
+  # end
+  #
+  # # Use Token Authentication
+  # include ActionController::HttpAuthentication::Token::ControllerMethods
+  # def authenticate
+  #   @current_user =
+  #     authenticate_or_request_with_http_token(&AUTH_PROC)
+  # end
+  #
+  # # call from actions to get authenticated user (or nil)
+  # attr_reader :current_user
+  #
+  # # call from unauthenticated actions that want current_user if available
+  # def set_current_user
+  #   # for access to authenticate method
+  #   t = ActionController::HttpAuthentication::Token
+  #   @current_user = t.authenticate(self, &AUTH_PROC)
+  # end
 
   # Require SSL for deployed applications
   force_ssl if: :ssl_configured?
@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Restrict visibility of these methods
-  private :authenticate, :current_user, :set_current_user, :record_not_found
+  private :record_not_found #:authenticate, :current_user,  :set_current_user,
   private :ssl_configured? # ,:api_request_settings
 
   # protected
