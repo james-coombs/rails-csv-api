@@ -13,7 +13,7 @@ class SamplesController < ApplicationController
     end
   end
 
-  # GET /samples
+  # GET /samples/json
   def json
     @samples = Sample.all
 
