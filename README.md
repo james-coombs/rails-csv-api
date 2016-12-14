@@ -7,11 +7,7 @@ Helper              | HTTP Verb | Path                           | Controller#Ac
 import_samples_path | POST      | /samples/import(.:format)      | samples#import
 json_samples_path   | GET       | /samples/json(.:format)        | samples#json
 samples_path        | GET       | /samples(.:format)             | samples#index
-                    | POST      | /samples(.:format)             | samples#create
 new_sample_path     | GET       | /samples/new(.:format)         | samples#new
 edit_sample_path    | GET       | /samples/:id/edit(.:format)    | samples#edit
 sample_path         | GET       | /samples/:id(.:format)         | samples#show
-                    | PATCH     | /samples/:id(.:format)         | samples#update
-                    | PUT       | /samples/:id(.:format)         | samples#update
-                    | DELETE    | /samples/:id(.:format)         | samples#destroy
 root_path           | GET       | /                              | samples#index
