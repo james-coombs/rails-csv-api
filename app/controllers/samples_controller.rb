@@ -13,6 +13,13 @@ class SamplesController < ApplicationController
     end
   end
 
+  # GET /samples
+  def json
+    @samples = Sample.all
+
+    render json: @samples
+  end
+
   # POST /samples
   def import
     Sample.import(params[:file])
